@@ -22,6 +22,10 @@ async function getMovies() {
     })
     .catch((err) => console.error(err));
   console.log(movies, " movies");
+  createMovie(movies);
+}
+
+function createMovie(movies) {
   movies.map((movie) => {
     //console.log(movie);
     const card = document.createElement("div");
@@ -35,8 +39,8 @@ async function getMovies() {
     image.alt = "dummy";
 
     image.src = `
-
-https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`;
+    
+    https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`;
 
     card.append(image);
   });
@@ -50,9 +54,12 @@ getMovies();
 search.addEventListener("click", getMovie);
 
 async function getMovie() {
+  infoDump.innerHTML = "";
+  let movies;
   const name = document.getElementById("inp");
   const movieName = name.value;
   console.log(movieName);
+
   const options = {
     method: "GET",
     headers: {
@@ -62,14 +69,15 @@ async function getMovie() {
     },
   };
 
-  //   await fetch(
-  //     "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1",
-  //     options
-  //   )
-  //     .then((res) => res.json())
-  //     .then((res) => {
-  //       console.log(res.results);
-  //       movies = res.results;
-  //     })
-  //     .catch((err) => console.error(err));
+  await fetch(
+    `https://api.themoviedb.org/3/search/movie?query=${movieName}&include_adult=false&language=en-US&page=1`,
+    options
+  )
+    .then((res) => res.json())
+    .then((res) => {
+      movies = res.results;
+    })
+    .catch((err) => console.error(err));
+  console.log(movies, " serach result====");
+  createMovie(movies);
 }
