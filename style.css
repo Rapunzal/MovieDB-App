@@ -8,7 +8,6 @@ img {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
-  align-items: center;
 }
 #search {
   display: flex;
@@ -26,4 +25,44 @@ img {
 #search input {
   width: 200px;
   margin-right: 10px;
+}
+.card {
+  background-color: gray;
+  position: relative;
+  border-radius: 4px;
+  box-shadow: 0 4px 5px black;
+  margin: 20px;
+  position: relative;
+  overflow: hidden;
+  width: 300px;
+}
+
+.card img {
+  width: 100%;
+}
+.movie-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+  background-color: gray;
+  /* padding: 0.5rem 1rem 1rem; */
+  letter-spacing: 0.5px;
+}
+.movie-info h3 {
+  margin-top: 0;
+}
+.description {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #fff;
+  padding: 1rem;
+  max-height: 100%;
+  transform: translateY(101%);
+  transition: transform 0.3s ease-in;
+}
+.card:hover .description {
+  transform: translateY(0);
 }
