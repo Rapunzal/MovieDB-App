@@ -23,9 +23,10 @@ axios.defaults.headers.post["Content-Type"] = "application/json";
 const infoDump = document.getElementById("infoDump");
 const search = document.querySelector(".btn");
 async function getMovies() {
+  lastUrl = `https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1`;
   let movies;
   try {
-    const response = await axios("/movie/now_playing?language=en-US&page=1");
+    const response = await axios(lastUrl);
     const data = response.data;
     movies = data.results;
     console.log(data, " data===");
@@ -101,7 +102,7 @@ next.addEventListener("click", () => {
 });
 
 function pageCall(page) {
-  console.log(lastUrl);
+  console.log(lastUrl, " lasturl");
   let partUrl = lastUrl.split("?");
   let queryParams = partUrl[1].split("&");
   let key = queryParams[queryParams.length - 1].split("=");

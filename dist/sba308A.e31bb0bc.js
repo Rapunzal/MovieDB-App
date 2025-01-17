@@ -6118,28 +6118,29 @@ function _getMovies() {
     return _regeneratorRuntime().wrap(function _callee$(_context) {
       while (1) switch (_context.prev = _context.next) {
         case 0:
-          _context.prev = 0;
-          _context.next = 3;
-          return (0, _axios.default)("/movie/now_playing?language=en-US&page=1");
-        case 3:
+          lastUrl = "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1";
+          _context.prev = 1;
+          _context.next = 4;
+          return (0, _axios.default)(lastUrl);
+        case 4:
           response = _context.sent;
           data = response.data;
           movies = data.results;
           console.log(data, " data===");
-          _context.next = 12;
+          _context.next = 13;
           break;
-        case 9:
-          _context.prev = 9;
-          _context.t0 = _context["catch"](0);
+        case 10:
+          _context.prev = 10;
+          _context.t0 = _context["catch"](1);
           console.error(_context.t0);
-        case 12:
+        case 13:
           console.log(movies, " movies");
           (0, _script.createMovie)(movies);
-        case 14:
+        case 15:
         case "end":
           return _context.stop();
       }
-    }, _callee, null, [[0, 9]]);
+    }, _callee, null, [[1, 10]]);
   }));
   return _getMovies.apply(this, arguments);
 }
@@ -6231,7 +6232,7 @@ next.addEventListener("click", function () {
   }
 });
 function pageCall(page) {
-  console.log(lastUrl);
+  console.log(lastUrl, " lasturl");
   var partUrl = lastUrl.split("?");
   var queryParams = partUrl[1].split("&");
   var key = queryParams[queryParams.length - 1].split("=");
