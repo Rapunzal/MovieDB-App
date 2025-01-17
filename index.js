@@ -1,26 +1,29 @@
+import axios from "axios";
+
+// Step 0: Store your API key here for reference and easy access.
+const API_KEY = "";
+
+//Setting Default headers
+
+const token =
+  "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwMjMzNWI2OWRjMDgyOGNiMDI5ZTgzN2U1OWRmOGZiYSIsIm5iZiI6MTczNjkwOTkxNS45NTUwMDAyLCJzdWIiOiI2Nzg3MjQ1YjYwMWFjZmU3YmQ0Zjk3YjYiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.zdBOfKnmZxXUngIOJRH78BOmdBpMX4xao2I8m48P_yQ";
+
+axios.defaults.baseURL = "https://api.themoviedb.org/3";
+axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
+axios.defaults.headers.post["Content-Type"] = "application/json";
+
 const infoDump = document.getElementById("infoDump");
 const search = document.querySelector(".btn");
 async function getMovies() {
   let movies;
-  const options = {
-    method: "GET",
-    headers: {
-      accept: "application/json",
-      Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwMjMzNWI2OWRjMDgyOGNiMDI5ZTgzN2U1OWRmOGZiYSIsIm5iZiI6MTczNjkwOTkxNS45NTUwMDAyLCJzdWIiOiI2Nzg3MjQ1YjYwMWFjZmU3YmQ0Zjk3YjYiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.zdBOfKnmZxXUngIOJRH78BOmdBpMX4xao2I8m48P_yQ",
-    },
-  };
-
-  await fetch(
-    "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1",
-    options
-  )
-    .then((res) => res.json())
-    .then((res) => {
-      console.log(res.results);
-      movies = res.results;
-    })
-    .catch((err) => console.error(err));
+  try {
+    const response = await axios("/movie/now_playing?language=en-US&page=1");
+    const data = response.data;
+    movies = data.results;
+    console.log(data, " data===");
+  } catch (errors) {
+    console.error(errors);
+  }
   console.log(movies, " movies");
   createMovie(movies);
 }
@@ -47,9 +50,6 @@ function createMovie(movies) {
 }
 
 getMovies();
-//https://api.themoviedb.org/3/trending/all/day?language=en-US/v9Du2HC3hlknAvGlWhquRbeifwW.jpg
-
-///https://api.themoviedb.org/v9Du2HC3hlknAvGlWhquRbeifwW.jpg
 
 search.addEventListener("click", getMovie);
 
@@ -60,24 +60,13 @@ async function getMovie() {
   const movieName = name.value;
   console.log(movieName);
 
-  const options = {
-    method: "GET",
-    headers: {
-      accept: "application/json",
-      Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwMjMzNWI2OWRjMDgyOGNiMDI5ZTgzN2U1OWRmOGZiYSIsIm5iZiI6MTczNjkwOTkxNS45NTUwMDAyLCJzdWIiOiI2Nzg3MjQ1YjYwMWFjZmU3YmQ0Zjk3YjYiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.zdBOfKnmZxXUngIOJRH78BOmdBpMX4xao2I8m48P_yQ",
-    },
-  };
+  const response = await axios(
+    `https://api.themoviedb.org/3/search/movie?query=${movieName}&include_adult=false&language=en-US&page=1`
+  );
+  console.log(response);
+  const data = response.data;
+  movies = data.results;
 
-  await fetch(
-    `https://api.themoviedb.org/3/search/movie?query=${movieName}&include_adult=false&language=en-US&page=1`,
-    options
-  )
-    .then((res) => res.json())
-    .then((res) => {
-      movies = res.results;
-    })
-    .catch((err) => console.error(err));
   console.log(movies, " serach result====");
   createMovie(movies);
 }
