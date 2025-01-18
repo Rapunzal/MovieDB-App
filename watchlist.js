@@ -1,4 +1,6 @@
 import { createMovie } from "./script";
+
+//Post method to save movie to watch list
 export async function addTowatchList(mediaId) {
   console.log(mediaId);
   const options = {
@@ -22,6 +24,7 @@ export async function addTowatchList(mediaId) {
     .catch((err) => console.error(err));
 }
 
+//Method to get list of saved movies
 export async function getWatchList() {
   let movies;
 

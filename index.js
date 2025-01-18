@@ -37,11 +37,11 @@ async function getMovies() {
   createMovie(movies);
 }
 
-///https://image.tmdb.org/t/p/w500/3ISYiULCiPAqBlFlWosNqZU7DVR.jpg
 getMovies();
 
 search.addEventListener("click", (url) => searchMovies(url));
 
+//Search movie
 async function searchMovies() {
   let movies;
   const name = document.getElementById("inp");
@@ -56,8 +56,6 @@ async function getMovie(url) {
   const name = document.getElementById("inp");
   const movieName = name.value;
   console.log(movieName);
-
-  // url = `https://api.themoviedb.org/3/search/movie?query=${movieName}&include_adult=false&language=en-US&page=1`;
 
   let prevUrl = url;
   lastUrl = prevUrl;
@@ -86,7 +84,7 @@ async function getMovie(url) {
   console.log(movies, " serach result====");
   createMovie(movies);
 }
-
+//Pagination
 prev.addEventListener("click", () => {
   console.log("next ==", nextPage, " total pages", totalPages);
   if (prevPage > 0) {

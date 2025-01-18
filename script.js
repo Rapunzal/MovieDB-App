@@ -2,7 +2,6 @@ import { addTowatchList } from "./watchlist";
 export function createMovie(movies) {
   infoDump.textContent = "";
   movies.map((movie) => {
-    // console.log(movie.id);
     if (movie.backdrop_path !== null) {
       const card = document.createElement("div");
       card.classList.add("card");
@@ -25,7 +24,7 @@ export function createMovie(movies) {
       movieInfo.append(movieTitle);
       card.append(movieInfo);
       const span = document.createElement("span");
-      span.textContent = movie.vote_average;
+      span.textContent = movie.vote_average.toFixed(1);
       movieInfo.append(span);
       const description = document.createElement("div");
       description.classList.add("description");

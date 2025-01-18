@@ -5,8 +5,11 @@ body.inter {
   font-style: normal;
   background-color: #14213d;
 }
-h1 {
+#h1 {
   color: #ffffff;
+  margin-top: 50px;
+  margin-left: 50px;
+  font-size: 2.2rem;
 }
 
 img {
@@ -34,8 +37,16 @@ img {
   border-radius: 5px;
 }
 #search input {
-  width: 200px;
+  width: 350px;
+  height: 40px;
   margin-right: 10px;
+  font-size: large;
+  border-radius: 20px;
+  text-align: center;
+}
+
+::placeholder {
+  text-align: center;
 }
 .card {
   background-color: #14213d;
@@ -55,7 +66,8 @@ img {
 #watchlistBtn {
   padding: 10px 30px;
   border: none;
-  background-color: #e5e5e5;
+  background-color: black;
+  color: white;
   font-size: 1rem;
 }
 .card img {
@@ -64,7 +76,8 @@ img {
 #favBtn {
   padding: 8px 10px;
   font-size: 1rem;
-  background-color: #e5e5e5;
+  color: white;
+  background-color: #000000;
   border: none;
   border-radius: 5px;
 }
@@ -73,7 +86,8 @@ img {
   align-items: center;
   justify-content: space-between;
   color: #fca311;
-  background-color: #e5e5e5;
+  background-color: #000000;
+  /* background-color: #e5e5e5; */
   /* padding: 0.5rem 1rem 1rem; */
   letter-spacing: 0.5px;
 }
@@ -85,7 +99,9 @@ img {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #fff;
+  background-color: #000000;
+  color: #fca311;
+  /* background-color: #fff; */
   padding: 1rem;
   max-height: 100%;
   transform: translateY(101%);
@@ -116,6 +132,11 @@ img {
 }
 #prev {
   cursor: pointer;
+}
+#prev,
+#current,
+#next {
+  color: #e5e5e5;
 }
 
 
