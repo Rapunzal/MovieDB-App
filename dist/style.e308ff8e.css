@@ -3,6 +3,10 @@ body.inter {
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
+  background-color: #14213d;
+}
+h1 {
+  color: #ffffff;
 }
 
 img {
@@ -34,7 +38,7 @@ img {
   margin-right: 10px;
 }
 .card {
-  background-color: gray;
+  background-color: #14213d;
   position: relative;
   border-radius: 4px;
   box-shadow: 0 4px 5px black;
@@ -43,16 +47,33 @@ img {
   overflow: hidden;
   width: 300px;
 }
-
+#header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#watchlistBtn {
+  padding: 10px 30px;
+  border: none;
+  background-color: #e5e5e5;
+  font-size: 1rem;
+}
 .card img {
   width: 100%;
+}
+#favBtn {
+  padding: 8px 10px;
+  font-size: 1rem;
+  background-color: #e5e5e5;
+  border: none;
+  border-radius: 5px;
 }
 .movie-info {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  color: white;
-  background-color: gray;
+  color: #fca311;
+  background-color: #e5e5e5;
   /* padding: 0.5rem 1rem 1rem; */
   letter-spacing: 0.5px;
 }
@@ -92,6 +113,9 @@ img {
   border: 5px solid gray;
   font-size: 20px;
   font-weight: 600;
+}
+#prev {
+  cursor: pointer;
 }
 
 

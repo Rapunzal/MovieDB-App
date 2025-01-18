@@ -1,3 +1,5 @@
+//First implemented in fetch
+
 const infoDump = document.getElementById("infoDump");
 const search = document.querySelector(".btn");
 async function getMovies() {

@@ -1,10 +1,18 @@
+import { addTowatchList } from "./watchlist";
 export function createMovie(movies) {
+  infoDump.textContent = "";
   movies.map((movie) => {
-    //console.log(movie);
+    // console.log(movie.id);
     if (movie.backdrop_path !== null) {
       const card = document.createElement("div");
       card.classList.add("card");
       infoDump.append(card);
+      const favBtn = document.createElement("button");
+      favBtn.id = "favBtn";
+      favBtn.textContent = "Add to WatchList";
+      card.append(favBtn);
+
+      favBtn.addEventListener("click", () => addTowatchList(movie.id));
 
       const image = document.createElement("img");
       image.alt = "dummy";
@@ -22,6 +30,7 @@ export function createMovie(movies) {
       const description = document.createElement("div");
       description.classList.add("description");
       description.textContent = movie.overview;
+
       card.append(description);
     }
   });

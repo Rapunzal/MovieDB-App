@@ -1,6 +1,6 @@
 import axios from "axios";
 import { createMovie } from "./script";
-
+import { getWatchList } from "./watchlist";
 //Setting Default headers
 
 let currentPage = 1;
@@ -120,3 +120,7 @@ function pageCall(page) {
     getMovie(url);
   }
 }
+
+const watchlistBtn = document.getElementById("watchlistBtn");
+console.log(watchlistBtn, " watchlist btn");
+watchlistBtn.addEventListener("click", getWatchList);
