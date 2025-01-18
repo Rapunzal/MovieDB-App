@@ -1,6 +1,6 @@
 import axios from "axios";
 import { createMovie } from "./script";
-import { getWatchList } from "./watchlist";
+import { getWatchList, fetchDataWithPromise } from "./watchlist";
 //Setting Default headers
 
 let currentPage = 1;
@@ -122,3 +122,10 @@ function pageCall(page) {
 const watchlistBtn = document.getElementById("watchlistBtn");
 console.log(watchlistBtn, " watchlist btn");
 watchlistBtn.addEventListener("click", getWatchList);
+
+//Using Promise
+fetchDataWithPromise(
+  "https://api.themoviedb.org/3/account/21752095/watchlist/movies?language=en-US&page=1&sort_by=created_at.asc"
+)
+  .then((res) => res)
+  .then((result) => console.log(result, " using promise"));

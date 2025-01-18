@@ -6054,6 +6054,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.addTowatchList = addTowatchList;
+exports.fetchDataWithPromise = fetchDataWithPromise;
 exports.getWatchList = getWatchList;
 var _script = require("./script");
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
@@ -6134,6 +6135,18 @@ function _getWatchList() {
     }, _callee2);
   }));
   return _getWatchList.apply(this, arguments);
+}
+function fetchDataWithPromise(url) {
+  console.log("fetch data");
+  return new Promise(function (resolve, reject) {
+    setTimeout(function () {
+      if (url) {
+        resolve("Data from ".concat(url));
+      } else {
+        reject("URL is required!");
+      }
+    }, 1000);
+  });
 }
 },{"./script":"script.js"}],"script.js":[function(require,module,exports) {
 "use strict";
@@ -6350,6 +6363,13 @@ function pageCall(page) {
 var watchlistBtn = document.getElementById("watchlistBtn");
 console.log(watchlistBtn, " watchlist btn");
 watchlistBtn.addEventListener("click", _watchlist.getWatchList);
+
+//Using Promise
+(0, _watchlist.fetchDataWithPromise)("https://api.themoviedb.org/3/account/21752095/watchlist/movies?language=en-US&page=1&sort_by=created_at.asc").then(function (res) {
+  return res;
+}).then(function (result) {
+  return console.log(result, " using promise");
+});
 },{"axios":"node_modules/axios/index.js","./script":"script.js","./watchlist":"watchlist.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';

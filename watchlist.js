@@ -50,3 +50,16 @@ export async function getWatchList() {
   console.log(movies, " ====>watchlist");
   createMovie(movies);
 }
+
+export function fetchDataWithPromise(url) {
+  console.log("fetch data");
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (url) {
+        resolve(`Data from ${url}`);
+      } else {
+        reject("URL is required!");
+      }
+    }, 1000);
+  });
+}
