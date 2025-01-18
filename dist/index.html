@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Movie DB</title>
     <link rel="stylesheet" href="/style.e308ff8e.css">
     <!-- Axios -->
     <!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
@@ -17,8 +17,10 @@
       <h1 id="h1">The Movie DB</h1>
 
       <div id="search">
-        <input type="text" name="movieName" id="inp" placeholder="Search Movie">
-        <button class="btn" type="button">Search Movies</button>
+        <form>
+          <input type="text" name="movieName" id="inp" placeholder="Search Movie" required="">
+          <button class="btn" type="submit">Search Movies</button>
+        </form>
       </div>
       <button id="watchlistBtn">Watch List</button>
     </div>

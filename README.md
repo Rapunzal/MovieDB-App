@@ -22,6 +22,7 @@
 - A Search button to search movies that get displayed if data exists.
 - On click of Add to Watchlist button movie gets added to watch list using POST request.
 - To display list of movies from watch list user has to click on WatchList.
+- Used imports and exports syntax.
 
 ## Output
 

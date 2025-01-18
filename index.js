@@ -29,24 +29,30 @@ async function getMovies() {
     const response = await axios(lastUrl);
     const data = response.data;
     movies = data.results;
-    console.log(data, " data===");
   } catch (errors) {
     console.error(errors);
   }
-  console.log(movies, " movies");
+
   createMovie(movies);
 }
 
 getMovies();
 
-search.addEventListener("click", (url) => searchMovies(url));
+search.addEventListener("click", (e) => searchMovies(e));
 
 //Search movie
-async function searchMovies() {
+async function searchMovies(e) {
+  e.preventDefault();
+
   let movies;
   const name = document.getElementById("inp");
   const movieName = name.value;
-  console.log(movieName);
+  if (movieName === "") {
+    infoDump.innerHTML = "<h2>Oops.. could not find the movie</h2>";
+    infoDump.style.color = "white";
+    return;
+  }
+  console.log(movieName, " movie name");
   let url = `https://api.themoviedb.org/3/search/movie?query=${movieName}&include_adult=false&language=en-US&page=1`;
   getMovie(url);
 }

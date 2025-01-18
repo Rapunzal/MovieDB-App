@@ -6158,37 +6158,42 @@ exports.createMovie = createMovie;
 var _watchlist = require("./watchlist");
 function createMovie(movies) {
   infoDump.textContent = "";
-  movies.map(function (movie) {
-    if (movie.backdrop_path !== null) {
-      var card = document.createElement("div");
-      card.classList.add("card");
-      infoDump.append(card);
-      var favBtn = document.createElement("button");
-      favBtn.id = "favBtn";
-      favBtn.textContent = "Add to WatchList";
-      card.append(favBtn);
-      favBtn.addEventListener("click", function () {
-        return (0, _watchlist.addTowatchList)(movie.id);
-      });
-      var image = document.createElement("img");
-      image.alt = "dummy";
-      image.src = "https://image.tmdb.org/t/p/w500/".concat(movie.backdrop_path);
-      card.append(image);
-      var movieInfo = document.createElement("div");
-      movieInfo.classList.add("movie-info");
-      var movieTitle = document.createElement("h3");
-      movieTitle.textContent = movie.original_title;
-      movieInfo.append(movieTitle);
-      card.append(movieInfo);
-      var span = document.createElement("span");
-      span.textContent = movie.vote_average.toFixed(1);
-      movieInfo.append(span);
-      var description = document.createElement("div");
-      description.classList.add("description");
-      description.textContent = movie.overview;
-      card.append(description);
-    }
-  });
+  if (movies.length > 0) {
+    movies.map(function (movie) {
+      if (movie.backdrop_path !== null) {
+        var card = document.createElement("div");
+        card.classList.add("card");
+        infoDump.append(card);
+        var favBtn = document.createElement("button");
+        favBtn.id = "favBtn";
+        favBtn.textContent = "Add to WatchList";
+        card.append(favBtn);
+        favBtn.addEventListener("click", function () {
+          return (0, _watchlist.addTowatchList)(movie.id);
+        });
+        var image = document.createElement("img");
+        image.alt = "dummy";
+        image.src = "https://image.tmdb.org/t/p/w500/".concat(movie.backdrop_path);
+        card.append(image);
+        var movieInfo = document.createElement("div");
+        movieInfo.classList.add("movie-info");
+        var movieTitle = document.createElement("h3");
+        movieTitle.textContent = movie.original_title;
+        movieInfo.append(movieTitle);
+        card.append(movieInfo);
+        var span = document.createElement("span");
+        span.textContent = movie.vote_average.toFixed(1);
+        movieInfo.append(span);
+        var description = document.createElement("div");
+        description.classList.add("description");
+        description.textContent = movie.overview;
+        card.append(description);
+      }
+    });
+  } else {
+    infoDump.innerHTML = "<h1>Oops.. Could Not find this Movie</h1>";
+    infoDump.style.color = "white";
+  }
 }
 },{"./watchlist":"watchlist.js"}],"index.js":[function(require,module,exports) {
 "use strict";
@@ -6236,45 +6241,52 @@ function _getMovies() {
           response = _context.sent;
           data = response.data;
           movies = data.results;
-          console.log(data, " data===");
-          _context.next = 13;
+          _context.next = 12;
           break;
-        case 10:
-          _context.prev = 10;
+        case 9:
+          _context.prev = 9;
           _context.t0 = _context["catch"](1);
           console.error(_context.t0);
-        case 13:
-          console.log(movies, " movies");
+        case 12:
           (0, _script.createMovie)(movies);
-        case 15:
+        case 13:
         case "end":
           return _context.stop();
       }
-    }, _callee, null, [[1, 10]]);
+    }, _callee, null, [[1, 9]]);
   }));
   return _getMovies.apply(this, arguments);
 }
 getMovies();
-search.addEventListener("click", function (url) {
-  return searchMovies(url);
+search.addEventListener("click", function (e) {
+  return searchMovies(e);
 });
 
 //Search movie
-function searchMovies() {
+function searchMovies(_x) {
   return _searchMovies.apply(this, arguments);
 }
 function _searchMovies() {
-  _searchMovies = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+  _searchMovies = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2(e) {
     var movies, name, movieName, url;
     return _regeneratorRuntime().wrap(function _callee2$(_context2) {
       while (1) switch (_context2.prev = _context2.next) {
         case 0:
+          e.preventDefault();
           name = document.getElementById("inp");
           movieName = name.value;
-          console.log(movieName);
+          if (!(movieName === "")) {
+            _context2.next = 7;
+            break;
+          }
+          infoDump.innerHTML = "<h2>Oops.. could not find the movie</h2>";
+          infoDump.style.color = "white";
+          return _context2.abrupt("return");
+        case 7:
+          console.log(movieName, " movie name");
           url = "https://api.themoviedb.org/3/search/movie?query=".concat(movieName, "&include_adult=false&language=en-US&page=1");
           getMovie(url);
-        case 5:
+        case 10:
         case "end":
           return _context2.stop();
       }
@@ -6282,7 +6294,7 @@ function _searchMovies() {
   }));
   return _searchMovies.apply(this, arguments);
 }
-function getMovie(_x) {
+function getMovie(_x2) {
   return _getMovie.apply(this, arguments);
 } //Pagination
 function _getMovie() {
