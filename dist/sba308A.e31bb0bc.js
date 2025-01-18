@@ -6224,6 +6224,7 @@ _axios.default.defaults.headers.common = {
 _axios.default.defaults.headers.post["Content-Type"] = "application/json";
 var infoDump = document.getElementById("infoDump");
 var search = document.querySelector(".btn");
+console.log("Starting Movie DB app");
 function getMovies() {
   return _getMovies.apply(this, arguments);
 }

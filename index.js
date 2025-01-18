@@ -22,6 +22,7 @@ axios.defaults.headers.post["Content-Type"] = "application/json";
 
 const infoDump = document.getElementById("infoDump");
 const search = document.querySelector(".btn");
+console.log("Starting Movie DB app");
 async function getMovies() {
   lastUrl = `https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1`;
   let movies;
